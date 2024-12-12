@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 async function hashing() {
   try {
     let userPass = "18271";
-    let hashedPass = await bcrypt.hash(userPass, 10);
+    let hashedPass = await bcrypt.hash(userPass, 10); //10 is salt value
     console.log(hashedPass);
   } catch (error) {
     console.log(error);
@@ -24,6 +24,11 @@ async function verifyPassword() {
     let userPass = "18271";
     let verify = await bcrypt.compare(userPass, hashValue); //password given should always be first.
     console.log(verify);
+    if (verify) {
+      console.log("Login succesful!");
+    } else {
+      console.log("Invalid credentials");
+    }
   } catch (error) {
     console.log(error);
   }
